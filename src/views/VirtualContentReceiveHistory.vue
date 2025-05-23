@@ -4,6 +4,9 @@ import {onMounted, ref} from 'vue';
 import {listReceiveHistoryAPI} from '../api/vcd';
 import {Message, Modal} from '@arco-design/web-vue';
 import {handleLoading} from '../utils/loading';
+import {useRouter} from 'vue-router';
+
+const router = useRouter();
 
 const i18n = useI18n();
 
@@ -40,7 +43,7 @@ const columns = ref([
   {
     title: i18n.t('Operation'),
     slotName: 'operation',
-    width: 60,
+    width: 80,
   },
 ]);
 const history = ref([]);
@@ -57,6 +60,10 @@ const loadHistory = () => {
   ).finally(() => {
     handleLoading(loading, false);
   });
+};
+
+const goToDetail = (id) => {
+  router.push({name: 'VirtualContentDetail', params: {id: id}});
 };
 
 const showData = (title, data) => {
@@ -94,14 +101,24 @@ onMounted(() => {
         @page-size-change="sizeChange"
       >
         <template #operation="{ record }">
-          <a-button
-            size="mini"
-            type="text"
-            style="padding: 0"
-            @click="showData(record.virtual_content_name, record.virtual_content_item_content)"
-          >
-            <icon-file />
-          </a-button>
+          <a-space>
+            <a-button
+              size="mini"
+              type="text"
+              style="padding: 0"
+              @click="goToDetail(record.virtual_content)"
+            >
+              <icon-launch />
+            </a-button>
+            <a-button
+              size="mini"
+              type="text"
+              style="padding: 0"
+              @click="showData(record.virtual_content_name, record.virtual_content_item_content)"
+            >
+              <icon-file />
+            </a-button>
+          </a-space>
         </template>
       </a-table>
     </a-space>

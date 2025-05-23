@@ -28,6 +28,7 @@ const info = ref(
       'end_time': '',
       'created_by': '',
       'created_by_nickname': '',
+      'items_count': -1,
     },
 );
 const loadDetail = () => {
@@ -62,15 +63,16 @@ const sizeChange = (size) => {
 const receiveHistory = ref([]);
 const receiveHistoryColumns = ref([
   {
-    title: i18n.t('ID'),
-    dataIndex: 'id',
-    width: 80,
-  },
-  {
     title: i18n.t('Receiver'),
     ellipsis: true,
     tooltip: true,
     slotName: 'receiver',
+  },
+  {
+    title: i18n.t('TrustLevel'),
+    slotName: 'trustLevel',
+    ellipsis: true,
+    tooltip: true,
   },
   {
     title: i18n.t('ReceiveAt'),
@@ -173,8 +175,11 @@ onMounted(() => {
           :size="2"
         >
           <icon-share-alt />
+          <a-tag v-if="info.items_count === historyPage.total">
+            {{ i18n.t('NoStock') }}
+          </a-tag>
           <a-tag
-            v-if="isEnabled(info.start_time, info.end_time)"
+            v-else-if="isEnabled(info.start_time, info.end_time)"
             :color="'green'"
             size="small"
             style="padding: 0"
@@ -234,6 +239,9 @@ onMounted(() => {
           >
             <icon-user-group />
             {{ i18n.t('Receiver History') }}
+            <div>
+              {{ historyPage.total }}/{{ info.items_count >= 0 ? info.items_count : '-' }}
+            </div>
             <icon-refresh
               @click="loadHistory"
               style="cursor: pointer"
@@ -261,6 +269,9 @@ onMounted(() => {
           @page-change="pageChange"
           @page-size-change="sizeChange"
         >
+          <template #trustLevel="{ record }">
+            {{ getTrustLevelName(record.receiver_trust_level) }}
+          </template>
           <template #receiver="{ record }">
             {{ record.receiver__nickname ? `${record.receiver__nickname}(${record.receiver})` : record.receiver }}
           </template>

@@ -57,6 +57,8 @@ const mZhCN = {
   'Submit': '提交',
   'Copy Link Success': '复制链接成功',
   'Copy Link Failed': '复制链接失败',
+  'NoStock': '无库存',
+  'TrustLevel': '信任等级',
 };
 
 export default mZhCN;

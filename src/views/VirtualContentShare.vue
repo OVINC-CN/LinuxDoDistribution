@@ -226,7 +226,7 @@ onMounted(() => {
               style="padding: 0"
               @click="goToDetail(record.id)"
             >
-              <icon-file />
+              <icon-launch />
             </a-button>
             <a-button
               size="mini"

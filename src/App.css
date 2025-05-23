@@ -37,6 +37,10 @@ html, body, #app {
     line-height: 0
 }
 
+.arco-menu-light {
+    background: unset!important;
+}
+
 *::-webkit-scrollbar {
     height: 6px;
     width: 6px;

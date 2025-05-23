@@ -197,6 +197,7 @@ onMounted(() => initRUM());
 #app-layout {
   height: calc(100 * var(--vh));
   width: 100vw;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);;
 }
 
 #app-header {
@@ -218,6 +219,7 @@ onMounted(() => initRUM());
 #app-menu-logo {
   padding-left: 0;
   margin-left: 0;
+  background: unset;
 }
 
 #app-header-menu-lang {

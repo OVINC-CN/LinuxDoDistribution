@@ -35,12 +35,12 @@ const i18n = useI18n();
   border-radius: var(--border-radius-medium);
   background: linear-gradient(
       135deg,
-      black 0%,
-      black 33.33%,
-      white 33.33%,
-      white 66.66%,
-      yellow 66.66%,
-      yellow 100%
+      #1c1c1e 0%,
+      #1c1c1e 33.33%,
+      #f0f0f0 33.33%,
+      #f0f0f0 66.66%,
+      #ffb003 66.66%,
+      #ffb003 100%
   );
 }
 

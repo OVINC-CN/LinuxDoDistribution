@@ -32,6 +32,7 @@ const mZhCN = {
   'Receive No.3': '羊毛铜手',
   'Mine': '我的',
   'Distribute': '分发',
+  'DistributeHistory': '分发记录',
   'Project': '项目',
   'TimeRange': '时间范围',
   'Status': '状态',

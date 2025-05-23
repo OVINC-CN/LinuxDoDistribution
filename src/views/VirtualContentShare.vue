@@ -182,7 +182,7 @@ onMounted(() => {
       :size="0"
     >
       <div class="vc-share-title">
-        {{ i18n.t('Distribute') }}
+        {{ i18n.t('DistributeHistory') }}
       </div>
       <a-button
         style="margin-bottom: 10px"

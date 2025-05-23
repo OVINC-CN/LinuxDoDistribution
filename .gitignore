@@ -1,0 +1,15 @@
+# IDE
+.idea
+.env
+.certs
+
+# build
+dist
+node_modules
+yarn.lock
+
+# eslint
+eslint-results.sarif
+
+# log
+logs

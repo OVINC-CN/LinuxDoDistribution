@@ -1,0 +1,16 @@
+{
+  "template": "https://github.com/OVINC-CN/DevTemplateVue.git",
+  "commit": "13a4c8e9247e06e37a115e0d004bb56f8f2e458c",
+  "checkout": "main",
+  "context": {
+    "cookiecutter": {
+      "project_name": "LinuxDoDistribution",
+      "_copy_without_render": [
+        ".github",
+        "src"
+      ],
+      "_template": "https://github.com/OVINC-CN/DevTemplateVue.git"
+    }
+  },
+  "directory": null
+}

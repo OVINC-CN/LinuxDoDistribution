@@ -1,0 +1,63 @@
+{
+    "name": "dev-template",
+    "version": "1.0.0",
+    "description": "Dev Template",
+    "main": "src/main.js",
+    "author": "OVINC-CN <contact@ovinc.cn>",
+    "license": "MIT",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "serve": "vite preview"
+    },
+    "eslintConfig": {
+        "root": true,
+        "parser": "vue-eslint-parser",
+        "parserOptions": {
+            "ecmaVersion": 2022,
+            "sourceType": "module"
+        },
+        "env": {
+            "browser": true,
+            "es6": true
+        },
+        "globals": {
+            "defineProps": "readonly",
+            "defineEmits": "readonly"
+        },
+        "extends": [
+            "plugin:vue/vue3-strongly-recommended",
+            "eslint-config-google"
+        ],
+        "rules": {
+            "vue/multi-word-component-names": "off",
+            "max-len": "off"
+        },
+        "ignorePatterns": [
+            "dist/",
+            "public/",
+            "node_modules/"
+        ]
+    },
+    "dependencies": {
+        "aegis-web-sdk": "^1.37.9",
+        "axios": "^1.5.0",
+        "moment": "^2.29.4",
+        "vue": "^3.3.4",
+        "vue-axios": "^3.5.2",
+        "vue-i18n": "^9.3.0",
+        "vue-router": "^4.2.4",
+        "vuex": "^4.1.0"
+    },
+    "devDependencies": {
+        "@arco-design/web-vue": "^2.51.0",
+        "@microsoft/eslint-formatter-sarif": "3.0.0",
+        "@vitejs/plugin-vue": "^4.3.4",
+        "eslint": "8.48.0",
+        "eslint-config-google": "^0.14.0",
+        "eslint-plugin-vue": "^9.17.0",
+        "standard": "^17.1.0",
+        "vite": "^4.4.9",
+        "vue-eslint-parser": "^9.3.1"
+    }
+}

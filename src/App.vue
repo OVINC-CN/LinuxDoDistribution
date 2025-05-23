@@ -105,9 +105,7 @@
         </a-layout-header>
         <a-layout-content>
           <router-view v-slot="{ Component }">
-            <keep-alive>
-              <component :is="Component" />
-            </keep-alive>
+            <component :is="Component" />
           </router-view>
         </a-layout-content>
       </a-layout>
@@ -133,9 +131,29 @@ const title = ref(i18n.t('LinuxDoHelper'));
 document.title = title.value;
 
 // menu
-const menu = ref([]);
+const menu = ref([
+  {
+    key: 'Home',
+    name: i18n.t('Home'),
+    path_match: '/',
+  },
+  {
+    key: 'VirtualContentStats',
+    name: i18n.t('Ranking'),
+    path_match: '/virtual_content/stats',
+  },
+  {
+    key: 'VirtualContentShare',
+    name: i18n.t('Distribute'),
+    path_match: '/virtual_content/share',
+  }, {
+    key: 'VirtualContentReceiveHistory',
+    name: i18n.t('Mine'),
+    path_match: '/virtual_content/receive_history',
+  },
+]);
 const router = useRouter();
-const currentMenuItem = ref('Home');
+const currentMenuItem = ref(menu.value[0].key);
 const goTo = (key) => {
   router.push({name: key});
 };
@@ -143,9 +161,6 @@ menu.value.forEach((item, index) => {
   if (index === 0) return;
   if (window.location.pathname.startsWith(item.path_match)) currentMenuItem.value = item.key;
 });
-
-// footer
-const currentYear = ref(new Date().getFullYear());
 
 // store
 const store = useStore();
@@ -173,9 +188,6 @@ const userDropDown = computed(() => {
 const handlerUserDropDown = (key) => {
   if (key === 'logout') {
     signOutAPI().finally(() => window.location.reload());
-  }
-  if (key === 'login') {
-    redirectToLogin();
   }
 };
 

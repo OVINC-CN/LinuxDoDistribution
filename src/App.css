@@ -42,6 +42,10 @@ html, body, #app {
     background: unset!important;
 }
 
+.arco-menu-item {
+    background: unset!important;
+}
+
 *::-webkit-scrollbar {
     height: 6px;
     width: 6px;

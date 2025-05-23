@@ -1,0 +1,135 @@
+<script setup>
+import {onMounted, ref} from 'vue';
+import {listVCStatsAPI} from '../api/vcd';
+import {handleLoading} from '../utils/loading';
+import {useI18n} from 'vue-i18n';
+
+const i18n = useI18n();
+
+const loading = ref(true);
+
+const shareRank = ref([]);
+const receiveRank = ref([]);
+
+const shareTitles = [i18n.t('Share No.1'), i18n.t('Share No.2'), i18n.t('Share No.3')];
+const receiveTitles = [i18n.t('Receive No.1'), i18n.t('Receive No.2'), i18n.t('Receive No.3')];
+
+const loadStats = () => {
+  handleLoading(loading, true);
+  listVCStatsAPI().then(
+      (res) => {
+        shareRank.value = res.data.share;
+        receiveRank.value = res.data.receive;
+      },
+  ).finally(() => {
+    handleLoading(loading, false);
+  });
+};
+
+onMounted(() => {
+  loadStats();
+});
+</script>
+
+<template>
+  <div id="vc-stats">
+    <a-space
+      id="vc-stats-info"
+      direction="vertical"
+      :size="0"
+    >
+      <div class="vc-stats-title">
+        {{ i18n.t('Ranking') }}
+      </div>
+      <a-list>
+        <a-list-item
+          v-for="(item, idx) in shareRank.slice(0, 3)"
+          :key="idx"
+        >
+          <div class="vc-rank-item">
+            <span class="vc-rank-title">{{ shareTitles[idx] || `第${idx+1}名` }}</span>
+            <span class="vc-rank-name">{{ item.user_nickname ? `${item.user_nickname}(${item.user})` : item.user }}</span>
+            <span class="vc-rank-value">{{ item.count }}</span>
+          </div>
+        </a-list-item>
+      </a-list>
+      <a-list style="margin-top: 10px">
+        <a-list-item
+          v-for="(item, idx) in receiveRank.slice(0, 3)"
+          :key="idx"
+        >
+          <div class="vc-rank-item">
+            <span class="vc-rank-title">{{ receiveTitles[idx] || `第${idx+1}名` }}</span>
+            <span class="vc-rank-name">{{ item.user_nickname ? `${item.user_nickname}(${item.user})` : item.user }}</span>
+            <span class="vc-rank-value">{{ item.count }}</span>
+          </div>
+        </a-list-item>
+      </a-list>
+    </a-space>
+  </div>
+</template>
+
+<style scoped>
+#vc-stats {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px 20px 20px;
+  box-sizing: border-box;
+}
+
+#vc-stats-info {
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  max-height: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--color-bg-1);
+  box-shadow: var(--shadow2-center);
+  border-radius: var(--border-radius-medium);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#vc-stats-info > :deep(.arco-space-item) {
+  width: 100%;
+}
+
+.vc-stats-title {
+  text-align: center;
+  word-break: break-all;
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.vc-rank-title {
+  min-width: 60px;
+  color: rgb(var(--orange-6));
+  font-weight: bold;
+}
+
+.vc-rank-name {
+  flex: 1;
+  margin: 0 10px;
+  color: var(--color-neutral-10);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vc-rank-value {
+  color: var(--color-neutral-8);
+  text-align: right;
+  min-width: 48px;
+}
+
+.vc-rank-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+</style>

@@ -17,6 +17,26 @@ const routes = [
     component: () => import('../views/OAuth.vue'),
   },
   {
+    path: '/virtual_content/receive_history/',
+    name: 'VirtualContentReceiveHistory',
+    component: () => import('../views/VirtualContentReceiveHistory.vue'),
+  },
+  {
+    path: '/virtual_content/share/',
+    name: 'VirtualContentShare',
+    component: () => import('../views/VirtualContentShare.vue'),
+  },
+  {
+    path: '/virtual_content/stats/',
+    name: 'VirtualContentStats',
+    component: () => import('../views/VirtualContentStats.vue'),
+  },
+  {
+    path: '/virtual_content/:id/',
+    name: 'VirtualContentDetail',
+    component: () => import('../views/VirtualContentDetail.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'Notfound',
     component: () => import('../views/Error404.vue'),

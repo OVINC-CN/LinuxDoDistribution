@@ -173,7 +173,7 @@ const userDropDown = computed(() => {
   if (user.value.username) {
     return [
       {
-        name: `${i18n.t('Logout')} (${user.value.nick_name})`,
+        name: `${i18n.t('Logout')} (${user.value.nick_name ? user.value.nick_name : user.value.username})`,
         value: 'logout',
       },
     ];

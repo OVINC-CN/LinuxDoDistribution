@@ -175,21 +175,22 @@ onMounted(() => {
           :size="2"
         >
           <icon-share-alt />
-          <a-tag v-if="info.items_count === historyPage.total">
+          <a-tag
+            v-if="info.items_count === historyPage.total"
+            size="mini"
+          >
             {{ i18n.t('NoStock') }}
           </a-tag>
           <a-tag
             v-else-if="isEnabled(info.start_time, info.end_time)"
             :color="'green'"
-            size="small"
-            style="padding: 0"
+            size="mini"
           >
             {{ i18n.t('Distributing') }}
           </a-tag>
           <a-tag
             v-else
-            size="small"
-            style="padding: 0"
+            size="mini"
           >
             {{ i18n.t('NotInTime') }}
           </a-tag>
@@ -211,8 +212,7 @@ onMounted(() => {
             :key="index"
           >
             <a-tag
-              size="small"
-              style="padding: 0"
+              size="mini"
             >
               {{ getTrustLevelName(l) }}
             </a-tag>
@@ -251,7 +251,7 @@ onMounted(() => {
             size="small"
             id="vd-detail-receive-button"
             :loading="receiving"
-            v-show="showReceive"
+            v-show="showReceive && info.items_count > historyPage.total"
             type="primary"
             @click="doReceive"
           >

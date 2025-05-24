@@ -37,7 +37,7 @@ const mZhCN = {
   'TimeRange': '时间范围',
   'Status': '状态',
   'Distributing': '分发中',
-  'NotInTime': '停止分发',
+  'NotInTime': '时机未到',
   'NewDistribution': '新建分发',
   'CreateDistribute': '创建分发',
   'EditDistribute': '编辑分发',

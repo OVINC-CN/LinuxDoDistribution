@@ -1,7 +1,7 @@
 <script setup>
 import {onMounted, ref} from 'vue';
-import {listVCStatsAPI} from '../api/vcd';
-import {handleLoading} from '../utils/loading';
+import {listVCStatsAPI} from '@/api/vcd';
+import {handleLoading} from '@/utils/loading';
 import {useI18n} from 'vue-i18n';
 
 const i18n = useI18n();

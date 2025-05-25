@@ -1,12 +1,13 @@
 <script setup>
 import {useRoute, useRouter} from 'vue-router';
 import {computed, onMounted, ref} from 'vue';
-import {getVCDetailAPI, getVCReceiveHistoryAPI, receiveVCAPI} from '../api/vcd';
-import {handleLoading} from '../utils/loading';
+import {getVCDetailAPI, getVCReceiveHistoryAPI, receiveVCAPI} from '@/api/vcd';
+import {handleLoading} from '@/utils/loading';
 import {Message} from '@arco-design/web-vue';
 import {useI18n} from 'vue-i18n';
-import {getTrustLevelName} from '../utils/trust-level';
+import {getTrustLevelName} from '@/utils/trust-level';
 import moment from 'moment';
+import {checkTCaptcha} from '@/utils/tcaptcha';
 
 const i18n = useI18n();
 
@@ -108,17 +109,21 @@ const showReceive = computed(() => {
 });
 const doReceive = () => {
   handleLoading(receiving, true);
-  receiveVCAPI(id.value).then(
-      (res) => {
-        Message.success(i18n.t('Receive Success'));
-        router.push({name: 'VirtualContentReceiveHistory'});
+  checkTCaptcha(
+      (tcaptcha) => {
+        receiveVCAPI(id.value, {tcaptcha}).then(
+            () => {
+              Message.success(i18n.t('Receive Success'));
+              router.push({name: 'VirtualContentReceiveHistory'});
+            },
+            (err) => {
+              Message.error(err.response.data.message);
+            },
+        ).finally(() => {
+          handleLoading(receiving, false);
+        });
       },
-      (err) => {
-        Message.error(err.response.data.message);
-      },
-  ).finally(() => {
-    handleLoading(receiving, false);
-  });
+  );
 };
 
 const isEnabled = (startTime, endTime) => {

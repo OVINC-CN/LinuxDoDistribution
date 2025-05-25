@@ -1,8 +1,8 @@
 <script setup>
 import {useI18n} from 'vue-i18n';
 import {onMounted, ref} from 'vue';
-import {handleLoading} from '../utils/loading';
-import {createVCAPI, deleteVCAPI, listVCHistoryAPI, updateVCAPI} from '../api/vcd';
+import {handleLoading} from '@/utils/loading';
+import {createVCAPI, deleteVCAPI, listVCHistoryAPI, updateVCAPI} from '@/api/vcd';
 import {Message} from '@arco-design/web-vue';
 import moment from 'moment';
 import {useRouter} from 'vue-router';

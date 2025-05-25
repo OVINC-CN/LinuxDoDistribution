@@ -1,4 +1,5 @@
 import {defineConfig} from 'vite';
+import path from 'path';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
@@ -17,6 +18,11 @@ export default defineConfig({
     host: process.env.HOST,
     allowedHosts: true,
     port: 8080,
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
   },
   css: {
     preprocessorOptions:

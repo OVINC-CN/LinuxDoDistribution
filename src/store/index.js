@@ -1,5 +1,5 @@
 import {createStore} from 'vuex';
-import {getUserInfoAPI} from '../api/user';
+import {getUserInfoAPI} from '@/api/user';
 
 const store = createStore({
   state() {

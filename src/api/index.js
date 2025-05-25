@@ -1,5 +1,5 @@
 import axios from 'axios';
-import globalContext from '../context';
+import globalContext from '@/context';
 
 const http = axios;
 

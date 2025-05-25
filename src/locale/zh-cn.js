@@ -59,6 +59,7 @@ const mZhCN = {
   'Copy Link Failed': '复制链接失败',
   'NoStock': '无库存',
   'TrustLevel': '信任等级',
+  'RequestForbiddenContactAdmin': '请求被拒绝，请联系管理员获取详情',
 };
 
 export default mZhCN;

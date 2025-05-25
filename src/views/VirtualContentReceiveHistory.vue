@@ -1,9 +1,9 @@
 <script setup>
 import {useI18n} from 'vue-i18n';
 import {onMounted, ref} from 'vue';
-import {listReceiveHistoryAPI} from '../api/vcd';
+import {listReceiveHistoryAPI} from '@/api/vcd';
 import {Message, Modal} from '@arco-design/web-vue';
-import {handleLoading} from '../utils/loading';
+import {handleLoading} from '@/utils/loading';
 import {useRouter} from 'vue-router';
 
 const router = useRouter();

@@ -1,6 +1,6 @@
 <script setup>
 import {useRoute, useRouter} from 'vue-router';
-import {computed, onMounted, ref} from 'vue';
+import {onMounted, onUnmounted, ref} from 'vue';
 import {getVCDetailAPI, getVCReceiveHistoryAPI, receiveVCAPI} from '@/api/vcd';
 import {handleLoading} from '@/utils/loading';
 import {Message} from '@arco-design/web-vue';
@@ -97,16 +97,6 @@ const loadHistory = () => {
   });
 };
 
-const showReceive = computed(() => {
-  try {
-    const now = new Date();
-    const startTime = moment(info.value.start_time);
-    const endTime = moment(info.value.end_time);
-    return startTime.isBefore(now) && endTime.isAfter(now);
-  } catch (_) {
-    return false;
-  }
-});
 const doReceive = () => {
   handleLoading(receiving, true);
   checkTCaptcha(
@@ -129,12 +119,28 @@ const doReceive = () => {
   );
 };
 
-const isEnabled = (startTime, endTime) => {
-  const now = new Date();
-  startTime = moment(startTime);
-  endTime = moment(endTime);
-  return startTime.isBefore(now) && endTime.isAfter(now);
-};
+const isEnabled = ref(false);
+const isEnabledInterval = ref(null);
+onMounted(() => {
+  isEnabledInterval.value = setInterval(
+      () => {
+        if (Object.keys(info.value).length === 0) {
+          isEnabled.value = false;
+          return;
+        }
+        const now = new Date();
+        const startTime = moment(info.value.start_time);
+        const endTime = moment(info.value.end_time);
+        isEnabled.value = startTime.isBefore(now) && endTime.isAfter(now);
+      },
+      100,
+  );
+});
+onUnmounted(() => {
+  if (isEnabledInterval.value) {
+    clearInterval(isEnabledInterval.value);
+  }
+});
 
 const copyLink = () => {
   navigator.clipboard.writeText(window.location.href)
@@ -190,7 +196,7 @@ onMounted(() => {
             {{ i18n.t('NoStock') }}
           </a-tag>
           <a-tag
-            v-else-if="isEnabled(info.start_time, info.end_time)"
+            v-else-if="isEnabled"
             :color="'green'"
             size="mini"
           >
@@ -259,7 +265,7 @@ onMounted(() => {
             size="small"
             id="vd-detail-receive-button"
             :loading="receiving"
-            v-show="showReceive && info.items_count > historyPage.total"
+            v-show="isEnabled && info.items_count > historyPage.total"
             type="primary"
             @click="doReceive"
           >

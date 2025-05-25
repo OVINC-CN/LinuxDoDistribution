@@ -81,12 +81,11 @@ onMounted(() => {
 }
 
 #vc-stats-info {
-  width: 100%;
-  max-width: 600px;
-  height: 100%;
-  max-height: 600px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  width: 600px;
+  max-width: calc(100vw - 40px);
+  height: 600px;
+  max-height: calc(100 * var(--vh) - 110px);
+  overflow: hidden;
   background: var(--color-bg-1);
   box-shadow: var(--shadow2-center);
   border-radius: var(--border-radius-medium);

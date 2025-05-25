@@ -125,7 +125,7 @@ const isEnabledInterval = ref(null);
 onMounted(() => {
   isEnabledInterval.value = setInterval(
       () => {
-        if (Object.keys(info.value).length === 0) {
+        if (Object.keys(info.value).length === 0 || !info.value.start_time || !info.value.end_time) {
           isEnabled.value = false;
           return;
         }

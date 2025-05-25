@@ -30,6 +30,7 @@ const info = ref(
       'created_by': '',
       'created_by_nickname': '',
       'items_count': -1,
+      'is_receivable': false,
     },
 );
 const loadDetail = () => {
@@ -265,7 +266,7 @@ onMounted(() => {
             size="small"
             id="vd-detail-receive-button"
             :loading="receiving"
-            v-show="isEnabled && info.items_count > historyPage.total"
+            v-show="info.is_receivable && isEnabled && info.items_count > historyPage.total"
             type="primary"
             @click="doReceive"
           >

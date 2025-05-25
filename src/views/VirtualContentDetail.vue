@@ -123,6 +123,9 @@ const doReceive = () => {
           handleLoading(receiving, false);
         });
       },
+      () => {
+        handleLoading(receiving, false);
+      },
   );
 };
 

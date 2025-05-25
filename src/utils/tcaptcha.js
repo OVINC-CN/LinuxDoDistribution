@@ -29,7 +29,8 @@ export const checkTCaptcha = (callback, denyCallback) => {
         }
       },
       (e) => {
-        Message.error(String(e));
+        console.error(e);
+        Message.error(i18n.global.t('InitTCaptchaFailed'));
         denyCallback();
       },
   );

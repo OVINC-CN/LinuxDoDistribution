@@ -60,6 +60,7 @@ const mZhCN = {
   'NoStock': '无库存',
   'TrustLevel': '信任等级',
   'RequestForbiddenContactAdmin': '请求被拒绝，请联系管理员获取详情',
+  'InitTCaptchaFailed': '初始化安全验证失败',
 };
 
 export default mZhCN;

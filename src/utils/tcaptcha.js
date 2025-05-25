@@ -28,6 +28,9 @@ export const checkTCaptcha = (callback, denyCallback) => {
           callback({ret: 0});
         }
       },
-      (e) => callback({ret: -1, err: String(e)}),
+      (e) => {
+        Message.error(String(e));
+        denyCallback();
+      },
   );
 };

@@ -283,7 +283,7 @@ onMounted(() => {
           :pagination="historyPage"
           @page-change="pageChange"
           @page-size-change="sizeChange"
-          :scroll="{maxHeight: 'min(100 * var(--vh) - 410px, 300px)'}"
+          :scroll="{maxHeight: 'min(calc(100 * var(--vh) - 430px), 280px)'}"
         >
           <template #trustLevel="{ record }">
             {{ getTrustLevelName(record.receiver_trust_level) }}

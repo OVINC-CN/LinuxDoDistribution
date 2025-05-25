@@ -57,5 +57,9 @@ const i18n = useI18n();
       1px 0px 0 white,
       0px -1px 0 white,
       -1px 0px 0 white;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 </style>

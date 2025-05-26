@@ -13,14 +13,14 @@ const doLogin = () => {
       (err) => {
         Message.error(err.response.data.message);
       },
-  )
-      .finally(
-          () => {
-            setTimeout(() => {
-              window.location.href = globalContext.siteUrl;
-            }, 2000);
-          },
-      );
+  ).finally(
+      () => {
+        setTimeout(() => {
+          const next = localStorage.getItem('login-next');
+          window.location.href = next || globalContext.siteUrl;
+        }, 2000);
+      },
+  );
 };
 
 onMounted(() => doLogin());

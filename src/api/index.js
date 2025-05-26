@@ -15,6 +15,8 @@ http.interceptors.response.use((res) => res.data, (err) => {
     if ((url.searchParams.has('code') && url.searchParams.has('state')) || (url.searchParams.has('doLogin'))) {
       return Promise.reject(err);
     }
+    // save last url
+    localStorage.setItem('login-next', window.location.href);
     // redirect to log in
     window.location.href = `${globalContext.siteUrl}/oauth/login/?doLogin=1`;
     return;

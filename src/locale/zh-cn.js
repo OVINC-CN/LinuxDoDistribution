@@ -69,8 +69,8 @@ const mZhCN = {
   'AllowSameIPTips': '如果拒绝，则同一个 IP 只能领取一次',
   'AllowSameIPRequired': '请填写 IP 管控',
   'No.Rand': '#{rank}',
-  'ShareRank': '金主排名',
-  'ReceiveRank': '羊毛排名',
+  'ShareRank': '富豪榜',
+  'ReceiveRank': '羊毛榜',
   'Allowed Users': '用户白名单',
   'AllowedUsersTips': '请填写用户名，而不是昵称；使用回车确认',
 };

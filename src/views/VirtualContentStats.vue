@@ -11,17 +11,6 @@ const loading = ref(true);
 const shareRank = ref([]);
 const receiveRank = ref([]);
 
-const shareTitles = [
-  i18n.t('Share No.1'),
-  i18n.t('Share No.2'),
-  i18n.t('Share No.3'),
-];
-const receiveTitles = [
-  i18n.t('Receive No.1'),
-  i18n.t('Receive No.2'),
-  i18n.t('Receive No.3'),
-];
-
 const loadStats = () => {
   handleLoading(loading, true);
   listVCStatsAPI().then(
@@ -66,7 +55,7 @@ onMounted(() => {
               :key="idx"
             >
               <div class="vc-rank-item">
-                <span class="vc-rank-title">{{ shareTitles[idx] || i18n.t('No.Rand', {rank: idx+1}) }}</span>
+                <span class="vc-rank-title">{{ i18n.t('No.Rand', {rank: idx+1}) }}</span>
                 <span class="vc-rank-name">{{ item.user_nickname ? `${item.user_nickname}(${item.user})` : item.user }}</span>
                 <span class="vc-rank-value">{{ item.count }}</span>
               </div>
@@ -86,7 +75,7 @@ onMounted(() => {
               :key="idx"
             >
               <div class="vc-rank-item">
-                <span class="vc-rank-title">{{ receiveTitles[idx] || i18n.t('No.Rand', {rank: idx+1}) }}</span>
+                <span class="vc-rank-title">{{ i18n.t('No.Rand', {rank: idx+1}) }}</span>
                 <span class="vc-rank-name">{{ item.user_nickname ? `${item.user_nickname}(${item.user})` : item.user }}</span>
                 <span class="vc-rank-value">{{ item.count }}</span>
               </div>
@@ -136,13 +125,17 @@ onMounted(() => {
 }
 
 .vc-rank-title {
-  min-width: 60px;
+  min-width: 40px;
   color: rgb(var(--orange-6));
   font-weight: bold;
 }
 
 #vd-stats-tab :deep(.arco-tabs-nav-tab) {
   justify-content: center;
+}
+
+#vd-stats-tab :deep(.arco-list-item) {
+  padding: 10px;
 }
 
 #vd-stats-tab :deep(.arco-list-item-main) {

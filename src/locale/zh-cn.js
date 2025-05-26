@@ -71,6 +71,8 @@ const mZhCN = {
   'No.Rand': '#{rank}',
   'ShareRank': '金主排名',
   'ReceiveRank': '羊毛排名',
+  'Allowed Users': '用户白名单',
+  'AllowedUsersTips': '请填写用户名，而不是昵称；使用回车确认',
 };
 
 export default mZhCN;

@@ -94,6 +94,7 @@ const formData = ref({
   name: '',
   desc: '',
   allowed_trust_levels: [],
+  allowed_users: [],
   allow_same_ip: true,
   start_time: '',
   end_time: '',
@@ -132,6 +133,7 @@ const showDrawer = (isEdit, data) => {
       name: '',
       desc: '',
       allowed_trust_levels: [],
+      allowed_users: [],
       allow_same_ip: true,
       start_time: '',
       end_time: '',
@@ -329,10 +331,27 @@ onMounted(() => {
         </a-select>
       </a-form-item>
       <a-form-item
+        :label="i18n.t('Allowed Users')"
+        field="allowed_users"
+      >
+        <a-space
+          direction="vertical"
+          style="width: 100%"
+        >
+          <a-input-tag v-model="formData.allowed_users" />
+          <div style="font-size: 12px; color: var(--color-text-2)">
+            {{ i18n.t('AllowedUsersTips') }}
+          </div>
+        </a-space>
+      </a-form-item>
+      <a-form-item
         :label="i18n.t('IP Control')"
         field="allow_same_ip"
       >
-        <a-space direction="vertical">
+        <a-space
+          direction="vertical"
+          style="width: 100%"
+        >
           <a-radio-group
             type="button"
             v-model="formData.allow_same_ip"

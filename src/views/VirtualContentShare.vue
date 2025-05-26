@@ -96,7 +96,8 @@ const formData = ref({
   allowed_trust_levels: [],
   start_time: '',
   end_time: '',
-  items: [],
+  items: '',
+  extra_items: '',
 });
 const formDataRules = ref({
   name: [
@@ -130,6 +131,7 @@ const showDrawer = (isEdit, data) => {
       start_time: '',
       end_time: '',
       items: '',
+      extra_items: '',
     };
   }
 };
@@ -142,6 +144,11 @@ const doSubmit = ({values, errors}) => {
   }
   handleLoading(drawerLoading, true);
   if (values.id) {
+    if (values.extra_items) {
+      values.extra_items = values.extra_items.split(/\r?\n/).filter((line) => line.trim() !== '');
+    } else {
+      values.extra_items = [];
+    }
     updateVCAPI(values.id, values).then(
         () => {
           hideDrawer();
@@ -348,8 +355,30 @@ onMounted(() => {
           show-time
           style="width: 100%"
           :placeholder="i18n.t('ItemsInputTip')"
-          :auto-size="{ minRows:1,maxRows:20}"
+          :auto-size="{minRows:3, maxRows:20}"
         />
+      </a-form-item>
+      <a-form-item
+        :label="i18n.t('AppendItems')"
+        field="extra_items"
+        v-else
+      >
+        <a-space
+          direction="vertical"
+          :size="0"
+          style="width: 100%"
+        >
+          <a-textarea
+            v-model="formData.extra_items"
+            show-time
+            style="width: 100%"
+            :placeholder="i18n.t('ItemsInputTip')"
+            :auto-size="{minRows:3, maxRows:20}"
+          />
+          <div style="font-size: 12px; color: var(--color-text-2)">
+            {{ i18n.t('AppendItemsTips') }}
+          </div>
+        </a-space>
       </a-form-item>
       <a-form-item>
         <a-space>

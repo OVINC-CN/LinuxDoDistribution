@@ -61,6 +61,8 @@ const mZhCN = {
   'TrustLevel': '信任等级',
   'RequestForbiddenContactAdmin': '请求被拒绝，请联系管理员获取详情',
   'InitTCaptchaFailed': '初始化安全验证失败',
+  'AppendItemsTips': '补充的分发内容，如果没有请不要填写，不会影响正在分发的内容',
+  'AppendItems': '补充项目',
 };
 
 export default mZhCN;

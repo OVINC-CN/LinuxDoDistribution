@@ -11,8 +11,16 @@ const loading = ref(true);
 const shareRank = ref([]);
 const receiveRank = ref([]);
 
-const shareTitles = [i18n.t('Share No.1'), i18n.t('Share No.2'), i18n.t('Share No.3')];
-const receiveTitles = [i18n.t('Receive No.1'), i18n.t('Receive No.2'), i18n.t('Receive No.3')];
+const shareTitles = [
+  i18n.t('Share No.1'),
+  i18n.t('Share No.2'),
+  i18n.t('Share No.3'),
+];
+const receiveTitles = [
+  i18n.t('Receive No.1'),
+  i18n.t('Receive No.2'),
+  i18n.t('Receive No.3'),
+];
 
 const loadStats = () => {
   handleLoading(loading, true);
@@ -41,30 +49,51 @@ onMounted(() => {
       <div class="vc-stats-title">
         {{ i18n.t('Ranking') }}
       </div>
-      <a-list>
-        <a-list-item
-          v-for="(item, idx) in shareRank.slice(0, 3)"
-          :key="idx"
+      <a-tabs
+        default-active-key="1"
+        id="vd-stats-tab"
+      >
+        <a-tab-pane
+          key="1"
+          :title="i18n.t('ShareRank')"
         >
-          <div class="vc-rank-item">
-            <span class="vc-rank-title">{{ shareTitles[idx] || `第${idx+1}名` }}</span>
-            <span class="vc-rank-name">{{ item.user_nickname ? `${item.user_nickname}(${item.user})` : item.user }}</span>
-            <span class="vc-rank-value">{{ item.count }}</span>
-          </div>
-        </a-list-item>
-      </a-list>
-      <a-list style="margin-top: 10px">
-        <a-list-item
-          v-for="(item, idx) in receiveRank.slice(0, 3)"
-          :key="idx"
+          <a-list
+            :scrollbar="true"
+            max-height="min(calc(100 * var(--vh) - 250px), 460px)"
+          >
+            <a-list-item
+              v-for="(item, idx) in shareRank"
+              :key="idx"
+            >
+              <div class="vc-rank-item">
+                <span class="vc-rank-title">{{ shareTitles[idx] || i18n.t('No.Rand', {rank: idx+1}) }}</span>
+                <span class="vc-rank-name">{{ item.user_nickname ? `${item.user_nickname}(${item.user})` : item.user }}</span>
+                <span class="vc-rank-value">{{ item.count }}</span>
+              </div>
+            </a-list-item>
+          </a-list>
+        </a-tab-pane>
+        <a-tab-pane
+          key="2"
+          :title="i18n.t('ReceiveRank')"
         >
-          <div class="vc-rank-item">
-            <span class="vc-rank-title">{{ receiveTitles[idx] || `第${idx+1}名` }}</span>
-            <span class="vc-rank-name">{{ item.user_nickname ? `${item.user_nickname}(${item.user})` : item.user }}</span>
-            <span class="vc-rank-value">{{ item.count }}</span>
-          </div>
-        </a-list-item>
-      </a-list>
+          <a-list
+            :scrollbar="true"
+            max-height="min(calc(100 * var(--vh) - 250px), 460px)"
+          >
+            <a-list-item
+              v-for="(item, idx) in receiveRank"
+              :key="idx"
+            >
+              <div class="vc-rank-item">
+                <span class="vc-rank-title">{{ receiveTitles[idx] || i18n.t('No.Rand', {rank: idx+1}) }}</span>
+                <span class="vc-rank-name">{{ item.user_nickname ? `${item.user_nickname}(${item.user})` : item.user }}</span>
+                <span class="vc-rank-value">{{ item.count }}</span>
+              </div>
+            </a-list-item>
+          </a-list>
+        </a-tab-pane>
+      </a-tabs>
     </a-space>
   </div>
 </template>
@@ -100,7 +129,7 @@ onMounted(() => {
 .vc-stats-title {
   text-align: center;
   word-break: break-all;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
   font-size: 24px;
   font-weight: bold;
 }
@@ -109,6 +138,10 @@ onMounted(() => {
   min-width: 60px;
   color: rgb(var(--orange-6));
   font-weight: bold;
+}
+
+#vd-stats-tab :deep(.arco-tabs-nav-tab) {
+  justify-content: center;
 }
 
 .vc-rank-name {

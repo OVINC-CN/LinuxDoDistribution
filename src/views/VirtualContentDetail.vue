@@ -299,6 +299,7 @@ onMounted(() => {
 
 <style scoped>
 #vc-detail {
+  color: var(--color-text-1);
   width: 100%;
   height: 100%;
   display: flex;
@@ -326,6 +327,7 @@ onMounted(() => {
 }
 
 #vc-detail-title {
+  color: var(--color-text-1);
   word-break: break-all;
   margin: 0 0 10px 0;
   font-size: 24px;

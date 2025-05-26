@@ -68,17 +68,25 @@
               <a-menu-item
                 v-for="item in menu"
                 :key="item.key"
+                style="color: var(--color-text-1)"
               >
                 {{ item.name }}
               </a-menu-item>
             </a-menu>
             <a-space id="app-header-right">
+              <a-link
+                style="color: var(--color-text-1)"
+                @click="changeTheme"
+              >
+                <icon-sun-fill v-if="isDarkTheme" />
+                <icon-moon-fill v-else />
+              </a-link>
               <a-dropdown
                 @select="handlerUserDropDown"
               >
                 <a-button
                   type="text"
-                  style="padding: 0; color: unset"
+                  style="padding: 0; color: var(--color-text-1)"
                 >
                   <a-badge
                     status="success"
@@ -122,9 +130,13 @@ import {useRouter} from 'vue-router';
 import {signOutAPI} from './api/user';
 import Aegis from 'aegis-web-sdk';
 import {getRUMConfigAPI} from './api/trace';
+import {changeTheme, isDark} from '@/utils/theme';
 
 // locale
 const i18n = useI18n();
+
+// theme
+const isDarkTheme = isDark();
 
 // title
 const title = ref(i18n.t('LinuxDoHelper'));
@@ -209,7 +221,7 @@ onMounted(() => initRUM());
 #app-layout {
   height: calc(100 * var(--vh));
   width: 100vw;
-  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);;
+  background-image: linear-gradient(120deg, var(--color-bg-1) 0%, var(--color-neutral-2) 100%);;
 }
 
 #app-header {

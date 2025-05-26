@@ -155,6 +155,7 @@ onMounted(() => {
 }
 
 #vc-r-history-title {
+  color: var(--color-text-1);
   text-align: center;
   word-break: break-all;
   margin: 0 0 20px 0;

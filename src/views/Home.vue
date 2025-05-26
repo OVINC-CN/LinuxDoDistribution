@@ -46,7 +46,7 @@ const i18n = useI18n();
 
 #home-space-title {
   font-size: 24px;
-  color: var(--color-neutral-10);
+  color: black;
   margin: 0;
   text-shadow:
       1px 1px 0 white,

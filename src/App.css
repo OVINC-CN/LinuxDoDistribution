@@ -46,6 +46,10 @@ html, body, #app {
     background: unset!important;
 }
 
+.tcaptcha-title {
+    color: var(--color-text-1);
+}
+
 *::-webkit-scrollbar {
     height: 6px;
     width: 6px;

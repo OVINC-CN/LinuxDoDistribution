@@ -144,6 +144,10 @@ onMounted(() => {
   justify-content: center;
 }
 
+#vd-stats-tab :deep(.arco-list-item-main) {
+  width: 100%;
+}
+
 .vc-rank-name {
   flex: 1;
   margin: 0 10px;

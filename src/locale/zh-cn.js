@@ -63,6 +63,11 @@ const mZhCN = {
   'InitTCaptchaFailed': '初始化安全验证失败',
   'AppendItemsTips': '补充的分发内容，如果没有请不要填写，不会影响正在分发的内容',
   'AppendItems': '补充项目',
+  'AllowSameIP': '允许相同 IP',
+  'DenySameIP': '拒绝相同 IP',
+  'IP Control': 'IP 管控',
+  'AllowSameIPTips': '如果拒绝，则同一个 IP 只能领取一次',
+  'AllowSameIPRequired': '请填写 IP 管控',
 };
 
 export default mZhCN;

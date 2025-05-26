@@ -94,6 +94,7 @@ const formData = ref({
   name: '',
   desc: '',
   allowed_trust_levels: [],
+  allow_same_ip: true,
   start_time: '',
   end_time: '',
   items: '',
@@ -107,6 +108,9 @@ const formDataRules = ref({
   allowed_trust_levels: [
     {required: true, message: i18n.t('TrustLevelRequired')},
     {minLength: 1, message: i18n.t('TrustLevelRequired')},
+  ],
+  allow_same_ip: [
+    {required: true, message: i18n.t('AllowSameIPRequired')},
   ],
   start_time: [
     {required: true, message: i18n.t('StartTimeRequired')},
@@ -128,6 +132,7 @@ const showDrawer = (isEdit, data) => {
       name: '',
       desc: '',
       allowed_trust_levels: [],
+      allow_same_ip: true,
       start_time: '',
       end_time: '',
       items: '',
@@ -322,6 +327,27 @@ onMounted(() => {
             {{ i18n.t('Leader') }}
           </a-option>
         </a-select>
+      </a-form-item>
+      <a-form-item
+        :label="i18n.t('IP Control')"
+        field="allow_same_ip"
+      >
+        <a-space direction="vertical">
+          <a-radio-group
+            type="button"
+            v-model="formData.allow_same_ip"
+          >
+            <a-radio :value="true">
+              {{ i18n.t('AllowSameIP') }}
+            </a-radio>
+            <a-radio :value="false">
+              {{ i18n.t('DenySameIP') }}
+            </a-radio>
+          </a-radio-group>
+          <div style="font-size: 12px; color: var(--color-text-2)">
+            {{ i18n.t('AllowSameIPTips') }}
+          </div>
+        </a-space>
       </a-form-item>
       <a-form-item
         :label="i18n.t('StartTime')"

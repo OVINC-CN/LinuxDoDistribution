@@ -21,7 +21,7 @@ export const listVCStatsAPI = () => new Promise((resolve, reject) => {
 });
 
 export const listVCHistoryAPI = (page, size) => new Promise((resolve, reject) => {
-  http.get(`/virtual_content/`).then((res) => resolve(res), (err) => reject(err));
+  http.get(`/virtual_content/`, {params: {page, size}}).then((res) => resolve(res), (err) => reject(err));
 });
 
 export const deleteVCAPI = (id) => new Promise((resolve, reject) => {

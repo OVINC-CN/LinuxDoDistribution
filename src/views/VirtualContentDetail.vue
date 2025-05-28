@@ -227,16 +227,21 @@ onMounted(() => {
           :size="2"
         >
           <icon-common />
-          <template
-            v-for="(l, index) in info.allowed_trust_levels"
-            :key="index"
+          <a-space
+            wrap
+            :size="2"
           >
-            <a-tag
-              size="mini"
+            <template
+              v-for="(l, index) in info.allowed_trust_levels"
+              :key="index"
             >
-              {{ getTrustLevelName(l) }}
-            </a-tag>
-          </template>
+              <a-tag
+                size="mini"
+              >
+                {{ getTrustLevelName(l) }}
+              </a-tag>
+            </template>
+          </a-space>
         </a-space>
         <a-space
           v-if="info.desc"
@@ -357,6 +362,7 @@ onMounted(() => {
 #vc-detail-desc {
   margin-top: 10px;
   word-break: break-all;
+  white-space: pre-line;
 }
 
 #vd-detail-receive-info {

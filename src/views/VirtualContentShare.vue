@@ -80,7 +80,7 @@ const deleting = ref(false);
 const deleteVC = (id) => {
   handleLoading(deleting, true);
   deleteVCAPI(id).then(
-      (res) => {
+      () => {
         loadHistory();
       },
       (err) => {
@@ -302,7 +302,7 @@ onMounted(() => {
       >
         <a-textarea
           v-model="formData.desc"
-          :max-length="255"
+          :max-length="1024"
           show-word-limit
           :auto-size="{ minRows:1,maxRows:5}"
         />

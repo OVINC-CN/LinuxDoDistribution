@@ -26,6 +26,7 @@ const page = ref({
   pageSize: 20,
   total: 0,
   showTotal: true,
+  simple: true,
 });
 const pageChange = (page) => {
   page.value.current = page;

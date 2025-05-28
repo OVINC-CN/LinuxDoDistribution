@@ -21,6 +21,7 @@ const historyPage = ref({
   pageSize: 20,
   total: 0,
   showTotal: true,
+  simple: true,
 });
 const pageChange = (page) => {
   historyPage.value.current = page;

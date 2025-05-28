@@ -1,8 +1,14 @@
 <script setup>
 import {signInAPI} from '@/api/user';
-import {onMounted} from 'vue';
+import {onMounted, ref} from 'vue';
 import {Message} from '@arco-design/web-vue';
 import globalContext from '@/context';
+import {useI18n} from 'vue-i18n';
+
+const i18n = useI18n();
+
+const title = ref(`${i18n.t('Login')} - ${i18n.t('LinuxDoVCD')}`);
+document.title = title.value;
 
 const doLogin = () => {
   const url = new URL(window.location.href);

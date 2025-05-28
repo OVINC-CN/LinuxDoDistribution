@@ -11,6 +11,9 @@ import {checkTCaptcha} from '@/utils/tcaptcha';
 
 const i18n = useI18n();
 
+const title = ref(i18n.t('LinuxDoVCD'));
+document.title = title.value;
+
 const route = useRoute();
 const router = useRouter();
 
@@ -38,6 +41,8 @@ const loadDetail = () => {
   getVCDetailAPI(id.value).then(
       (res) => {
         info.value = res.data;
+        const title = ref(`${info.value.name} - ${i18n.t('LinuxDoVCD')}`);
+        document.title = title.value;
       },
       (err) => {
         Message.error(err.response.data.message);

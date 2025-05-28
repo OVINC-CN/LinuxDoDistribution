@@ -9,7 +9,15 @@
   </a-empty>
 </template>
 
-<script setup />
+<script setup>
+import {ref} from 'vue';
+import {useI18n} from 'vue-i18n';
+
+const i18n = useI18n();
+
+const title = ref(`404 - ${i18n.t('LinuxDoVCD')}`);
+document.title = title.value;
+</script>
 
 <style scoped>
 #error-404 {

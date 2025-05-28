@@ -13,6 +13,9 @@ const router = useRouter();
 
 const i18n = useI18n();
 
+const title = ref(`${i18n.t('DistributeHistory')} - ${i18n.t('LinuxDoVCD')}`);
+document.title = title.value;
+
 const historyPage = ref({
   current: 1,
   pageSize: 20,

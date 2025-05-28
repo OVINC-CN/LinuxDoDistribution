@@ -6,6 +6,9 @@ import {useI18n} from 'vue-i18n';
 
 const i18n = useI18n();
 
+const title = ref(`${i18n.t('Ranking')} - ${i18n.t('LinuxDoVCD')}`);
+document.title = title.value;
+
 const loading = ref(true);
 
 const shareRank = ref([]);

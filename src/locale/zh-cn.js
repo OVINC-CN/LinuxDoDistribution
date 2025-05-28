@@ -6,7 +6,6 @@ const mZhCN = {
   'VerifyingUserInfo': '登录中',
   'Logout': '登出',
   'Login': '登录',
-  'LinuxDoHelper': 'Linux Do Helper',
   'Redirecting': '重定向中...',
   'Receivers': '领取用户',
   'ID': 'ID',
@@ -73,6 +72,11 @@ const mZhCN = {
   'ReceiveRank': '羊毛榜',
   'Allowed Users': '用户白名单',
   'AllowedUsersTips': '请填写用户名，而不是昵称；使用回车确认',
+  'LinuxDoVCD': 'Linux Do 分发站',
+  'OneClickCopy': '一键复制',
+  'Close': '关闭',
+  'Copy Success': '复制成功',
+  'Copy Failed': '复制失败',
 };
 
 export default mZhCN;

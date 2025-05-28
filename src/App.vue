@@ -139,7 +139,7 @@ const i18n = useI18n();
 const isDarkTheme = isDark();
 
 // title
-const title = ref(i18n.t('LinuxDoHelper'));
+const title = ref(i18n.t('LinuxDoVCD'));
 document.title = title.value;
 
 // menu

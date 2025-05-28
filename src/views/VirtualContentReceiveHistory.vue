@@ -12,6 +12,9 @@ const i18n = useI18n();
 
 const loading = ref(true);
 
+const title = ref(`${i18n.t('Receive History')} - ${i18n.t('LinuxDoVCD')}`);
+document.title = title.value;
+
 const historyPage = ref({
   current: 1,
   pageSize: 20,
@@ -71,6 +74,19 @@ const showData = (title, data) => {
     title: title,
     content: data,
     modalStyle: {width: '600px', maxWidth: 'calc(100% - 40px)', boxSizing: 'border-box'},
+    okText: i18n.t('OneClickCopy'),
+    onOk: () => {
+      navigator.clipboard.writeText(data)
+          .then(() => {
+            Message.success(i18n.t('Copy Success'));
+          })
+          .catch(() => {
+            Message.error(i18n.t('Copy Failed'));
+          });
+    },
+    cancelText: i18n.t('Close'),
+    hideCancel: false,
+    simple: true,
   });
 };
 

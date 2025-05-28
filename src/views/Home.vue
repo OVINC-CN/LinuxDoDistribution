@@ -8,7 +8,7 @@
       direction="vertical"
     >
       <h2 id="home-space-title">
-        {{ i18n.t("LinuxDoHelper") }}
+        {{ i18n.t("LinuxDoVCD") }}
       </h2>
     </a-space>
   </a-space>
@@ -16,8 +16,13 @@
 
 <script setup>
 import {useI18n} from 'vue-i18n';
+import {ref} from 'vue';
 
 const i18n = useI18n();
+
+// title
+const title = ref(i18n.t('LinuxDoVCD'));
+document.title = title.value;
 </script>
 
 <style scoped>

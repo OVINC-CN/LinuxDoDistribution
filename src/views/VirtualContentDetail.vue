@@ -324,7 +324,8 @@ onMounted(() => {
   max-width: calc(100vw - 40px);
   height: 600px;
   max-height: calc(100 * var(--vh) - 110px);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: var(--color-bg-1);
   box-shadow: var(--shadow2-center);
   border-radius: var(--border-radius-medium);

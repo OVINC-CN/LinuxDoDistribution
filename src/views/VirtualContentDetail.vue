@@ -286,7 +286,7 @@ onMounted(() => {
         <a-table
           :columns="receiveHistoryColumns"
           :data="receiveHistory"
-          :stripe="true"
+          :stripe="false"
           :loading="historyLoading"
           :column-resizable="true"
           :page-position="'bottom'"

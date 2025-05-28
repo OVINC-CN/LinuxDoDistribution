@@ -108,7 +108,7 @@ onMounted(() => {
       <a-table
         :columns="columns"
         :data="history"
-        :stripe="true"
+        :stripe="false"
         :loading="loading"
         :column-resizable="true"
         :page-position="'bottom'"

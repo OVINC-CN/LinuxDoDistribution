@@ -77,6 +77,12 @@ const mZhCN = {
   'Close': '关闭',
   'Copy Success': '复制成功',
   'Copy Failed': '复制失败',
+  'Public Display': '公开展示',
+  'ShowInHome': '在首页展示',
+  'HideFromHome': '在首页隐藏',
+  'IsPublicVisibleRequired': '请填写公开展示规则',
+  'SharingProjects': '正在分发',
+  'Creator': '创建人',
 };
 
 export default mZhCN;

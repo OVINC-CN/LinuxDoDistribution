@@ -24,6 +24,10 @@ export const listVCHistoryAPI = (page, size) => new Promise((resolve, reject) =>
   http.get(`/virtual_content/`, {params: {page, size}}).then((res) => resolve(res), (err) => reject(err));
 });
 
+export const listVCPublicAPI = (page, size) => new Promise((resolve, reject) => {
+  http.get(`/virtual_content/all/`, {params: {page, size}}).then((res) => resolve(res), (err) => reject(err));
+});
+
 export const deleteVCAPI = (id) => new Promise((resolve, reject) => {
   http.delete(`/virtual_content/${id}/`).then((res) => resolve(res), (err) => reject(err));
 });

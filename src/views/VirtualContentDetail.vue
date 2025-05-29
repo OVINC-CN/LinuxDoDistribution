@@ -1,6 +1,6 @@
 <script setup>
 import {useRoute, useRouter} from 'vue-router';
-import {onMounted, onUnmounted, ref} from 'vue';
+import {computed, onMounted, onUnmounted, ref} from 'vue';
 import {getVCDetailAPI, getVCReceiveHistoryAPI, receiveVCAPI} from '@/api/vcd';
 import {handleLoading} from '@/utils/loading';
 import {Message} from '@arco-design/web-vue';
@@ -8,11 +8,15 @@ import {useI18n} from 'vue-i18n';
 import {getTrustLevelName} from '@/utils/trust-level';
 import moment from 'moment';
 import {checkTCaptcha} from '@/utils/tcaptcha';
+import {useStore} from 'vuex';
 
 const i18n = useI18n();
 
 const title = ref(i18n.t('LinuxDoVCD'));
 document.title = title.value;
+
+const store = useStore();
+const user = computed(() => store.state.user);
 
 const route = useRoute();
 const router = useRouter();
@@ -27,13 +31,13 @@ const info = ref(
       'id': '',
       'name': '',
       'desc': '',
+      'allowed_users': [],
       'allowed_trust_levels': [],
       'start_time': '',
       'end_time': '',
       'created_by': '',
       'created_by_nickname': '',
       'items_count': -1,
-      'is_receivable': false,
     },
 );
 const loadDetail = () => {
@@ -126,6 +130,7 @@ const doReceive = () => {
   );
 };
 
+const enableCountDown = ref(0);
 const isEnabled = ref(false);
 const isEnabledInterval = ref(null);
 onMounted(() => {
@@ -135,10 +140,11 @@ onMounted(() => {
           isEnabled.value = false;
           return;
         }
-        const now = new Date();
+        const now = moment();
         const startTime = moment(info.value.start_time);
         const endTime = moment(info.value.end_time);
         isEnabled.value = startTime.isBefore(now) && endTime.isAfter(now);
+        enableCountDown.value = Math.max(0, Math.min(startTime.unix() - now.unix(), 9999));
       },
       100,
   );
@@ -147,6 +153,30 @@ onUnmounted(() => {
   if (isEnabledInterval.value) {
     clearInterval(isEnabledInterval.value);
   }
+});
+
+const buttonDisabled = computed(() => {
+  return (
+    (!isEnabled.value) ||
+    (info.value.items_count <= historyPage.value.total) ||
+    (info.value.allowed_users.length > 0 && info.value.allowed_users.indexOf(user.value.username) === -1) ||
+    (info.value.allowed_trust_levels.indexOf(user.value.trust_level) === -1)
+  );
+});
+const disableButtonReason = computed(() => {
+  if (info.value.allowed_trust_levels.indexOf(user.value.trust_level) === -1) {
+    return i18n.t('UserTrustLevelNotMatch');
+  }
+  if (info.value.allowed_users.length > 0 && info.value.allowed_users.indexOf(user.value.username) === -1) {
+    return i18n.t('NoInUserWhitelist');
+  }
+  if (info.value.items_count <= historyPage.value.total) {
+    return i18n.t('NoStock');
+  }
+  if (!isEnabled.value) {
+    return i18n.t('NotInTime');
+  }
+  return i18n.t('Receive');
 });
 
 const copyLink = () => {
@@ -273,16 +303,18 @@ onMounted(() => {
               style="cursor: pointer"
             />
           </a-space>
-          <a-button
-            size="small"
-            id="vd-detail-receive-button"
-            :loading="receiving"
-            v-show="info.is_receivable && isEnabled && info.items_count > historyPage.total"
-            type="primary"
-            @click="doReceive"
-          >
-            {{ i18n.t('Receive') }}
-          </a-button>
+          <a-tooltip :content="disableButtonReason">
+            <a-button
+              size="small"
+              id="vd-detail-receive-button"
+              :loading="receiving"
+              :disabled="buttonDisabled"
+              type="primary"
+              @click="doReceive"
+            >
+              {{ i18n.t('Receive') }}{{ enableCountDown > 0 ? ` ${enableCountDown}s` : '' }}
+            </a-button>
+          </a-tooltip>
         </div>
         <a-table
           :columns="receiveHistoryColumns"

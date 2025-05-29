@@ -1,7 +1,7 @@
 import http from './index';
 
 export const getUserInfoAPI = () => new Promise((resolve, reject) => {
-  http.get('/account/user_info/').then((res) => resolve(res), (err) => reject(err));
+  http.get('/account/oauth/user_info/').then((res) => resolve(res), (err) => reject(err));
 });
 
 export const getSignInUrlAPI = () => new Promise((resolve, reject) => {

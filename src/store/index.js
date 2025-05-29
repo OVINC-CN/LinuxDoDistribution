@@ -9,8 +9,7 @@ const store = createStore({
       user: {
         username: '',
         nick_name: '',
-        last_login: '',
-        user_type: '',
+        trust_level: -1,
       },
       userProperties: {
         avatar: null,

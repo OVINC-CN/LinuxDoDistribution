@@ -83,6 +83,8 @@ const mZhCN = {
   'IsPublicVisibleRequired': '请填写公开展示规则',
   'SharingProjects': '正在分发',
   'Creator': '创建人',
+  'NoInUserWhitelist': '不在白名单用户中',
+  'UserTrustLevelNotMatch': '信任等级不匹配',
 };
 
 export default mZhCN;

@@ -383,6 +383,7 @@ onMounted(() => {
       <a-form-item
         :label="i18n.t('Public Display')"
         field="is_public_visible"
+        v-show="false"
       >
         <a-space
           direction="vertical"

@@ -52,6 +52,7 @@ onMounted(() => {
           <a-list
             :scrollbar="true"
             max-height="min(calc(100 * var(--vh) - 250px), 460px)"
+            :loading="loading"
           >
             <a-list-item
               v-for="(item, idx) in shareRank"
@@ -72,6 +73,7 @@ onMounted(() => {
           <a-list
             :scrollbar="true"
             max-height="min(calc(100 * var(--vh) - 250px), 460px)"
+            :loading="loading"
           >
             <a-list-item
               v-for="(item, idx) in receiveRank"

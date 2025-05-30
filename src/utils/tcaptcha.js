@@ -1,7 +1,6 @@
 import {getTCaptchaConfigAPI} from '@/api/tcaptcha';
 import i18n from '@/locale';
 import {Message} from '@arco-design/web-vue';
-import {isDark} from '@/utils/theme';
 
 export const checkTCaptcha = (callback, denyCallback) => {
   getTCaptchaConfigAPI().then(
@@ -19,7 +18,6 @@ export const checkTCaptcha = (callback, denyCallback) => {
                 callback,
                 {
                   aidEncrypted: captchaConfig.aid_encrypted,
-                  enableDarkMode: isDark() ? 'force': false,
                 },
             );
             tCaptchaClient.show();

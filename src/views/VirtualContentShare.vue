@@ -104,7 +104,6 @@ const formData = ref({
   end_time: '',
   items: '',
   extra_items: '',
-  is_public_visible: false,
 });
 const formDataRules = ref({
   name: [
@@ -117,9 +116,6 @@ const formDataRules = ref({
   ],
   allow_same_ip: [
     {required: true, message: i18n.t('AllowSameIPRequired')},
-  ],
-  is_public_visible: [
-    {required: true, message: i18n.t('IsPublicVisibleRequired')},
   ],
   start_time: [
     {required: true, message: i18n.t('StartTimeRequired')},
@@ -150,7 +146,6 @@ const showDrawer = (isEdit, data) => {
       end_time: endTime,
       items: '',
       extra_items: '',
-      is_public_visible: false,
     };
   }
 };
@@ -378,28 +373,6 @@ onMounted(() => {
           <div style="font-size: 12px; color: var(--color-text-2)">
             {{ i18n.t('AllowSameIPTips') }}
           </div>
-        </a-space>
-      </a-form-item>
-      <a-form-item
-        :label="i18n.t('Public Display')"
-        field="is_public_visible"
-        v-show="false"
-      >
-        <a-space
-          direction="vertical"
-          style="width: 100%"
-        >
-          <a-radio-group
-            type="button"
-            v-model="formData.is_public_visible"
-          >
-            <a-radio :value="true">
-              {{ i18n.t('ShowInHome') }}
-            </a-radio>
-            <a-radio :value="false">
-              {{ i18n.t('HideFromHome') }}
-            </a-radio>
-          </a-radio-group>
         </a-space>
       </a-form-item>
       <a-form-item

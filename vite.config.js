@@ -39,7 +39,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (_) => {
-          return 'index-[hash].js';
+          return 'index';
         },
       },
     },

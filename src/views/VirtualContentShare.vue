@@ -162,13 +162,14 @@ const doSubmit = ({values, errors}) => {
     return;
   }
   handleLoading(drawerLoading, true);
-  if (values.id) {
-    if (values.extra_items) {
-      values.extra_items = values.extra_items.split(/\r?\n/).filter((line) => line.trim() !== '');
+  const data = JSON.parse(JSON.stringify(values));
+  if (data.id) {
+    if (data.extra_items) {
+      data.extra_items = data.extra_items.split(/\r?\n/).filter((line) => line.trim() !== '');
     } else {
-      values.extra_items = [];
+      data.extra_items = [];
     }
-    updateVCAPI(values.id, values).then(
+    updateVCAPI(data.id, data).then(
         () => {
           hideDrawer();
           loadHistory();
@@ -181,8 +182,8 @@ const doSubmit = ({values, errors}) => {
     });
     return;
   }
-  values.items = values.items.split(/\r?\n/).filter((line) => line.trim() !== '');
-  createVCAPI(values).then(
+  data.items = data.items.split(/\r?\n/).filter((line) => line.trim() !== '');
+  createVCAPI(data).then(
       () => {
         hideDrawer();
         loadHistory();

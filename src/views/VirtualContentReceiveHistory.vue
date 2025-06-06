@@ -1,6 +1,6 @@
 <script setup>
 import {useI18n} from 'vue-i18n';
-import {onMounted, ref} from 'vue';
+import {h, onMounted, ref} from 'vue';
 import {listReceiveHistoryAPI} from '@/api/vcd';
 import {Message, Modal} from '@arco-design/web-vue';
 import {handleLoading} from '@/utils/loading';
@@ -73,7 +73,20 @@ const goToDetail = (id) => {
 const showData = (title, data) => {
   Modal.info({
     title: title,
-    content: data,
+    content: h(
+        'div',
+        {
+          style: {
+            'word-break': 'break-all',
+            'display': '-webkit-box',
+            '-webkit-box-orient': 'vertical',
+            'overflow': 'hidden',
+            'text-overflow': 'ellipsis',
+            '-webkit-line-clamp': 3,
+          },
+        },
+        data,
+    ),
     modalStyle: {width: '600px', maxWidth: 'calc(100% - 40px)', boxSizing: 'border-box'},
     okText: i18n.t('OneClickCopy'),
     onOk: () => {

@@ -85,6 +85,10 @@ const mZhCN = {
   'Creator': '创建人',
   'NoInUserWhitelist': '不在白名单用户中',
   'UserTrustLevelNotMatch': '信任等级不匹配',
+  'ShowReceiverRequired': '请填写是否展示接受人',
+  'Receiver Privacy': '隐私保护',
+  'ShowReceiverName': '展示用户名',
+  'HideReceiverName': '隐藏用户名',
 };
 
 export default mZhCN;

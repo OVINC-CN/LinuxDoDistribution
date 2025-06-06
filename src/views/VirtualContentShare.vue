@@ -100,6 +100,7 @@ const formData = ref({
   allowed_trust_levels: [],
   allowed_users: [],
   allow_same_ip: true,
+  show_receiver: false,
   start_time: '',
   end_time: '',
   items: '',
@@ -116,6 +117,9 @@ const formDataRules = ref({
   ],
   allow_same_ip: [
     {required: true, message: i18n.t('AllowSameIPRequired')},
+  ],
+  show_receiver: [
+    {required: true, message: i18n.t('ShowReceiverRequired')},
   ],
   start_time: [
     {required: true, message: i18n.t('StartTimeRequired')},
@@ -142,6 +146,7 @@ const showDrawer = (isEdit, data) => {
       allowed_trust_levels: [],
       allowed_users: [],
       allow_same_ip: true,
+      show_receiver: false,
       start_time: now,
       end_time: endTime,
       items: '',
@@ -373,6 +378,27 @@ onMounted(() => {
           <div style="font-size: 12px; color: var(--color-text-2)">
             {{ i18n.t('AllowSameIPTips') }}
           </div>
+        </a-space>
+      </a-form-item>
+      <a-form-item
+        :label="i18n.t('Receiver Privacy')"
+        field="show_receiver"
+      >
+        <a-space
+          direction="vertical"
+          style="width: 100%"
+        >
+          <a-radio-group
+            type="button"
+            v-model="formData.show_receiver"
+          >
+            <a-radio :value="true">
+              {{ i18n.t('ShowReceiverName') }}
+            </a-radio>
+            <a-radio :value="false">
+              {{ i18n.t('HideReceiverName') }}
+            </a-radio>
+          </a-radio-group>
         </a-space>
       </a-form-item>
       <a-form-item

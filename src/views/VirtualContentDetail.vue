@@ -111,6 +111,10 @@ const loadHistory = () => {
 const doReceive = () => {
   handleLoading(receiving, true);
   checkTCaptcha(
+      {
+        instance_type: 1,
+        instance_id: info.value.id,
+      },
       (tcaptcha) => {
         receiveVCAPI(id.value, {tcaptcha}).then(
             () => {

@@ -2,8 +2,8 @@ import {getTCaptchaConfigAPI} from '@/api/tcaptcha';
 import i18n from '@/locale';
 import {Message} from '@arco-design/web-vue';
 
-export const checkTCaptcha = (callback, denyCallback) => {
-  getTCaptchaConfigAPI().then(
+export const checkTCaptcha = (params, callback, denyCallback) => {
+  getTCaptchaConfigAPI(params).then(
       (res) => {
         const captchaConfig = res.data;
         if (captchaConfig.is_forbidden) {
@@ -18,6 +18,7 @@ export const checkTCaptcha = (callback, denyCallback) => {
                 callback,
                 {
                   aidEncrypted: captchaConfig.aid_encrypted,
+                  bizState: captchaConfig.biz_state,
                 },
             );
             tCaptchaClient.show();
